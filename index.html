@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facemash</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Auth Container -->
+        <div id="auth-container" class="container">
+            <h1 class="logo">🔥 Facemash</h1>
+            
+            <!-- Login Form -->
+            <div id="login-form" class="form-box">
+                <h2>Login</h2>
+                <input type="email" id="login-email" placeholder="Email" required>
+                <input type="password" id="login-password" placeholder="Password" required>
+                <button id="btn-login">Login</button>
+                <p>Don't have an account? <a href="#" id="link-signup">Sign up</a></p>
+            </div>
+
+            <!-- Signup Form -->
+            <div id="signup-form" class="form-box hidden">
+                <h2>Sign Up</h2>
+                <input type="text" id="signup-name" placeholder="Display Name" required>
+                <input type="text" id="signup-bio" placeholder="Short Bio (e.g. 'Hello world!')" required>
+                <input type="email" id="signup-email" placeholder="Email" required>
+                <input type="password" id="signup-password" placeholder="Password" required>
+                <button id="btn-signup">Sign Up</button>
+                <p>Already have an account? <a href="#" id="link-login">Login</a></p>
+            </div>
+        </div>
+
+        <!-- Main App Container (Hidden by default) -->
+        <div id="main-container" class="hidden">
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <div class="my-profile">
+                    <div class="avatar" id="my-avatar"></div>
+                    <div class="info">
+                        <h3 id="my-name">User</h3>
+                        <p id="my-bio">Bio...</p>
+                    </div>
+                    <div class="profile-actions">
+                        <button id="btn-settings" class="icon-btn" title="Settings">⚙️</button>
+                        <button id="btn-logout" class="icon-btn" title="Logout">🚪</button>
+                    </div>
+                </div>
+
+                <!-- Settings Modal (Hidden by default) -->
+                <div id="settings-modal" class="modal hidden">
+                    <div class="modal-content">
+                        <h2>Edit Profile</h2>
+                        <div class="setting-item">
+                            <label>Profile Picture</label>
+                            <div class="dp-edit-container">
+                                <div class="avatar large" id="settings-avatar-preview"></div>
+                                <label for="dp-input" class="file-label sm">Change Photo</label>
+                                <input type="file" id="dp-input" accept="image/*" class="hidden">
+                            </div>
+                        </div>
+                        <div class="setting-item">
+                            <label>Bio</label>
+                            <textarea id="settings-bio-input" placeholder="Update your bio..."></textarea>
+                        </div>
+                        <div class="modal-footer">
+                            <button id="btn-close-settings" class="secondary-btn">Cancel</button>
+                            <button id="btn-save-settings">Save Changes</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navigation Tabs -->
+                <div class="nav-tabs">
+                    <button id="tab-chats" class="tab-btn active">Chats</button>
+                    <button id="tab-posts" class="tab-btn">Posts</button>
+                </div>
+                
+                <div id="sidebar-chats" class="sidebar-content">
+                    <div class="search-container">
+                        <input type="text" id="user-search" placeholder="Search users...">
+                    </div>
+                    <div class="users-list-container">
+                        <h3>Conversations</h3>
+                        <ul id="recent-chats-list">
+                            <!-- Recent chats will be injected here -->
+                        </ul>
+                        <h3>All Users</h3>
+                        <ul id="users-list">
+                            <!-- User items will be injected here -->
+                        </ul>
+                    </div>
+                </div>
+
+                <div id="sidebar-posts" class="sidebar-content hidden">
+                    <div class="create-post-container">
+                        <textarea id="post-input" placeholder="What's on your mind?"></textarea>
+                        <div class="post-media-controls">
+                            <label for="post-image-input" class="file-label">
+                                <span>📷</span> Choose Image
+                            </label>
+                            <input type="file" id="post-image-input" accept="image/*" class="hidden">
+                            <div id="image-preview" class="hidden">
+                                <img src="" alt="Preview">
+                                <button id="btn-remove-preview">✕</button>
+                            </div>
+                        </div>
+                        <input type="text" id="post-link-url" placeholder="Link URL (optional)">
+                        <button id="btn-post">Post</button>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Chat Area -->
+            <main class="chat-area" id="chat-view">
+                <div id="no-chat-selected" class="empty-state">
+                    <h2>Select a user to start chatting</h2>
+                </div>
+
+                <div id="chat-interface" class="hidden">
+                    <header class="chat-header">
+                        <div class="avatar small" id="chat-avatar"></div>
+                        <h3 id="chat-username">Username</h3>
+                    </header>
+
+                    <div id="messages-container" class="messages-list">
+                        <!-- Messages injected here -->
+                    </div>
+
+                    <div class="chat-input-area">
+                        <input type="text" id="message-input" placeholder="Type a message...">
+                        <button id="btn-send">Send</button>
+                    </div>
+                </div>
+            </main>
+
+            <!-- Feed Area -->
+            <main class="feed-area hidden" id="feed-view">
+                <div class="feed-container">
+                    <h2>Community Feed</h2>
+                    <div id="posts-list" class="posts-list">
+                        <!-- Posts injected here -->
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Firebase Logic -->
+    <script type="module" src="/app.js"></script>
+</body>
+</html>
